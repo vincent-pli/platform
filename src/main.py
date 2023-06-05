@@ -11,24 +11,35 @@ from src.auth.router import router as auth_router
 from src.config import app_configs, settings
 from src.database import database
 
+# the lifespan event not trigger, have no idea what's going on...
+# @asynccontextmanager
+# async def lifespan(_application: FastAPI) -> AsyncGenerator:
+#     # Startup
+#     print("++++++++++---")
+#     pool = aioredis.ConnectionPool.from_url(
+#         settings.REDIS_URL, max_connections=10, decode_responses=True
+#     )
+#     redis.redis_client = aioredis.Redis(connection_pool=pool)
+    
+#     await database.connect()
 
-@asynccontextmanager
-async def lifespan(_application: FastAPI) -> AsyncGenerator:
-    # Startup
-    pool = aioredis.ConnectionPool.from_url(
-        settings.REDIS_URL, max_connections=10, decode_responses=True
-    )
-    redis.redis_client = aioredis.Redis(connection_pool=pool)
+#     yield
+
+#     # Shutdown
+#     await database.disconnect()
+#     await redis.redis_client.close()
+
+
+app = FastAPI(**app_configs)
+
+@app.on_event("startup")
+async def startup_event():
     await database.connect()
 
-    yield
 
-    # Shutdown
+@app.on_event("shutdown")
+async def shutdown_event():
     await database.disconnect()
-    await redis.redis_client.close()
-
-
-app = FastAPI(**app_configs, lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,

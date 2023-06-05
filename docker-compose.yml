@@ -1,20 +1,20 @@
 version: '3.7'
 
 services:
-  app:
-    container_name: app
-    image: app_image
-    env_file:
-      - .env
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - ./:/src
-    ports:
-      - "8000:8000"
-    depends_on:
-      - app_db
+  # app:
+  #   container_name: app
+  #   image: app_image
+  #   env_file:
+  #     - .env
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ./:/src
+  #   ports:
+  #     - "8000:8000"
+  #   depends_on:
+  #     - app_db
 
   app_db:
     container_name: app_db
@@ -43,7 +43,7 @@ volumes:
   app_pg_data:
     driver: "local"
 
-networks:
-  default:
-    external: true
-    name: app_main
+# networks:
+#   default:
+#     external: true
+#     name: app_main

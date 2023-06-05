@@ -23,6 +23,9 @@ DATABASE_URL = settings.DATABASE_URL
 engine = create_engine(DATABASE_URL)
 metadata = MetaData(naming_convention=DB_NAMING_CONVENTION)
 
+print("=====")
+print(DATABASE_URL)
+print(settings.ENVIRONMENT.is_testing)
 database = Database(DATABASE_URL, force_rollback=settings.ENVIRONMENT.is_testing)
 
 
@@ -47,3 +50,4 @@ refresh_tokens = Table(
     Column("created_at", DateTime, server_default=func.now(), nullable=False),
     Column("updated_at", DateTime, onupdate=func.now()),
 )
+metadata.create_all(engine)

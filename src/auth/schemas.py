@@ -4,7 +4,7 @@ from pydantic import EmailStr, Field, validator
 
 from src.models import ORJSONModel
 
-STRONG_PASSWORD_PATTERN = re.compile(r"^(?=.*[\d])(?=.*[!@#$%^&*])[\w!@#$%^&*]{6,128}$")
+STRONG_PASSWORD_PATTERN = re.compile(r"^(?=.*[\d])(?=.*[!@#$%^&*])[\w!@#$%^&~*]{6,128}$")
 
 
 class AuthUser(ORJSONModel):
