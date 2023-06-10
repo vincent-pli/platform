@@ -8,6 +8,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 from src import redis
 from src.auth.router import router as auth_router
+from src.infrence.router import router as infrence_router
 from src.config import app_configs, settings
 from src.database import database
 
@@ -63,3 +64,4 @@ async def healthcheck() -> dict[str, str]:
 
 
 app.include_router(auth_router, prefix="/auth", tags=["Auth"])
+app.include_router(infrence_router, prefix="/infrence", tags=["Infrence"])

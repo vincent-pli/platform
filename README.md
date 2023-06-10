@@ -74,3 +74,6 @@ curl -X 'GET' \
   -H 'accept: application/json' \
   -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjg3MjA0NTc3LCJpc19hZG1pbiI6ZmFsc2V9.VZU-CqUHWLMcjexztQMiWXt0DPEW5Kfc_73eTlri5ZM"
 ```
+
+1. start Ray cluster:
+`ray start --head --port=6379`
