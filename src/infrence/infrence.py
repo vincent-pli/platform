@@ -4,6 +4,7 @@ from ray.serve.gradio_integrations import GradioServer
 from ray import serve
 import os
 from src.infrence.schemas import Launcher
+from aviary.backend.server.run import run
 
 
 class Infrence():
@@ -26,8 +27,9 @@ class Infrence():
         return gr.Interface.from_pipeline(generator)
     
     def run(self, launcher: Launcher):
-        app = GradioServer.options(name = launcher.name, ray_actor_options={"num_cpus": 4}).bind(
-            self.__gradio_summarizer_builder
-        )   
+        # app = GradioServer.options(name = launcher.name, ray_actor_options={"num_cpus": 4}).bind(
+        #     self.__gradio_summarizer_builder
+        # )   
 
-        serve.run(app)
+        # serve.run(app)
+        run("/Users/lipeng/workspaces/github.com/vincent-pli/platform/pretrained/amazon--LightGPT.yaml")
